@@ -103,7 +103,7 @@
   "name": "analytics",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DavidWells/analytics.git"
+    "url": "git+https://github.com/zevross/lib-analytics.git"
   },
   "scripts": {
     "build": "node ../../scripts/build/index.js",
