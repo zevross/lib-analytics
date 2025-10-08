@@ -1,6 +1,7 @@
 {
   "name": "root",
   "private": true,
+  "version": "0.7.5",
   "scripts": {
     "setup": "pnpm install",
     "setup-examples": "node ./scripts/installer.js",
