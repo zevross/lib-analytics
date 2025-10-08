@@ -1,3 +1,9 @@
+# Why this fork exists
+
+Fork of analytics package for TypeScript v2. Used in proj-hei-2025 -> hei-globalburden-app. We were having type incompatibilities.
+
+
+
 <a href="https://getanalytics.io">
   <img src="https://user-images.githubusercontent.com/532272/110860586-cc927e00-8271-11eb-95c7-44bdda78ab2a.png" width="450" />
 </a>
