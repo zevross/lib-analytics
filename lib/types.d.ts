@@ -6,9 +6,9 @@ declare module "analytics" {
    * @property USER_TRAITS - Visitor traits localstorage key
    */
   type constants = {
-      ANON_ID: ANON_ID;
-      USER_ID: USER_ID;
-      USER_TRAITS: USER_TRAITS;
+    ANON_ID: ANON_ID;
+    USER_ID: USER_ID;
+    USER_TRAITS: USER_TRAITS;
   };
 
   /**
@@ -51,10 +51,10 @@ declare module "analytics" {
    * @returns Analytics Instance
    */
   function analytics(config: {
-      app?: string;
-      version?: string;
-      debug?: boolean;
-      plugins?: AnalyticsPlugin[];
+    app?: string;
+    version?: string;
+    debug?: boolean;
+    plugins?: AnalyticsPlugin[];
   }): AnalyticsInstance;
 
   /**
@@ -71,8 +71,8 @@ declare module "analytics" {
    * @property disable - Remove storage value
    */
   type Plugins = {
-      enable: EnablePlugin;
-      disable: DisablePlugin;
+    enable: EnablePlugin;
+    disable: DisablePlugin;
   };
 
   /**
@@ -89,7 +89,10 @@ declare module "analytics" {
    * @param plugins - name of plugins(s) to disable
    * @param [callback] - callback after enable runs
    */
-  type EnablePlugin = (plugins: string & any[], callback?: (...params: any[]) => any) => Promise<any>;
+  type EnablePlugin = (
+    plugins: string & any[],
+    callback?: (...params: any[]) => any
+  ) => Promise<any>;
 
   /**
    * Disable analytics plugin
@@ -104,7 +107,10 @@ declare module "analytics" {
    * @param plugins - name of integration(s) to disable
    * @param callback - callback after disable runs
    */
-  type DisablePlugin = (plugins: string & any[], callback: (...params: any[]) => any) => Promise<any>;
+  type DisablePlugin = (
+    plugins: string & any[],
+    callback: (...params: any[]) => any
+  ) => Promise<any>;
 
   /**
    * Analytic instance returned from initialization
@@ -120,18 +126,18 @@ declare module "analytics" {
    * @property storage - storage methods
    * @property plugins - plugin methods
    */
-  export interface AnalyticsInstance  {
-      identify: Identify;
-      track: Track;
-      page: Page;
-      user: User;
-      reset: Reset;
-      ready: Ready;
-      on: On;
-      once: Once;
-      getState: GetState;
-      storage: Storage;
-      plugins: Plugins;
+  export interface AnalyticsInstance {
+    identify: Identify;
+    track: Track;
+    page: Page;
+    user: User;
+    reset: Reset;
+    ready: Ready;
+    on: On;
+    once: Once;
+    getState: GetState;
+    storage: Storage;
+    plugins: Plugins;
   }
 
   /**
@@ -172,7 +178,12 @@ declare module "analytics" {
    * @param [options] - Options to pass to identify call
    * @param [callback] - Callback function after identify completes
    */
-  type Identify = (userId: string, traits?: any, options?: any, callback?: (...params: any[]) => any) => Promise<any>;
+  type Identify = (
+    userId: string,
+    traits?: any,
+    options?: any,
+    callback?: (...params: any[]) => any
+  ) => Promise<any>;
 
   /**
    * Track an analytics event. This will trigger `track` calls in any installed plugins
@@ -217,7 +228,12 @@ declare module "analytics" {
    * @param [options] - Event options
    * @param [callback] - Callback to fire after tracking completes
    */
-  type Track = (eventName: string, payload?: any, options?: any, callback?: (...params: any[]) => any) => Promise<any>;
+  type Track = (
+    eventName: string,
+    payload?: any,
+    options?: any,
+    callback?: (...params: any[]) => any
+  ) => Promise<any>;
 
   /**
    * Trigger page view. This will trigger `page` calls in any installed plugins
@@ -255,7 +271,11 @@ declare module "analytics" {
    * @param [options] - Page tracking options
    * @param [callback] - Callback to fire after page view call completes
    */
-  type Page = (data?: PageData, options?: any, callback?: (...params: any[]) => any) => Promise<any>;
+  type Page = (
+    data?: PageData,
+    options?: any,
+    callback?: (...params: any[]) => any
+  ) => Promise<any>;
 
   /**
    * Get user data
@@ -309,7 +329,10 @@ declare module "analytics" {
    * @param name - Name of event to listen to
    * @param callback - function to fire on event
    */
-  type On = (name: string, callback: (...params: any[]) => any) => DetachListeners;
+  type On = (
+    name: string,
+    callback: (...params: any[]) => any
+  ) => DetachListeners;
 
   /**
    * Detach listeners
@@ -334,7 +357,10 @@ declare module "analytics" {
    * @param name - Name of event to listen to
    * @param callback - function to fire on event
    */
-  type Once = (name: string, callback: (...params: any[]) => any) => DetachListeners;
+  type Once = (
+    name: string,
+    callback: (...params: any[]) => any
+  ) => DetachListeners;
 
   /**
    * Get data about user, activity, or context. Access sub-keys of state with `dot.prop` syntax.
@@ -368,9 +394,9 @@ declare module "analytics" {
    * @property removeItem - Remove storage value
    */
   type Storage = {
-      getItem: GetItem;
-      setItem: SetItem;
-      removeItem: RemoveItem;
+    getItem: GetItem;
+    setItem: SetItem;
+    removeItem: RemoveItem;
   };
 
   /**
@@ -445,12 +471,12 @@ declare module "analytics" {
    * @property [height] - Page height
    */
   interface PageDataBase {
-      title?: string;
-      url?: string;
-      path?: string;
-      search?: string;
-      width?: string;
-      height?: string;
+    title?: string;
+    url?: string;
+    path?: string;
+    search?: string;
+    width?: string;
+    height?: string;
   }
 
   /**
@@ -471,24 +497,24 @@ declare module "analytics" {
    * @property [ready] - Fire function when plugin ready
    */
   interface AnalyticsPluginBase {
-      name: string;
-      EVENTS?: any;
-      config?: any;
-      initialize?: (...params: any[]) => any;
-      page?: (...params: any[]) => any;
-      track?: (...params: any[]) => any;
-      identify?: (...params: any[]) => any;
-      loaded?: (...params: any[]) => any;
-      ready?: (...params: any[]) => any;
+    name: string;
+    EVENTS?: any;
+    config?: any;
+    initialize?: (...params: any[]) => any;
+    page?: (...params: any[]) => any;
+    track?: (...params: any[]) => any;
+    identify?: (...params: any[]) => any;
+    loaded?: (...params: any[]) => any;
+    ready?: (...params: any[]) => any;
   }
 
-
-
-  export type PageData<T extends string = string> = PageDataBase & Record<T, unknown>;
-  export type AnalyticsPlugin<T extends string = string> = AnalyticsPluginBase & string extends T
-    ? Record<string, unknown>
-    : Record<T, unknown> & Record<string, unknown>;
-
+  export type PageData<T extends string = string> = PageDataBase &
+    Record<T, unknown>;
+  export type AnalyticsPlugin<T extends string = string> = AnalyticsPluginBase;
+  //NOTE @em843: This is commented out for compatibility with TS 2.3.4
+  //   & string extends T
+  //     ? Record<string, unknown>
+  //     : Record<T, unknown> & Record<string, unknown>;
 
   export const CONSTANTS: constants;
 
