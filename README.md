@@ -1,3 +1,10 @@
+# What is this lib?
+
+This repo is the `analytics` package within the original forked repository. We made a small edit to `types.d.ts` for compatibility with
+TypeScript 2.3.4.
+
+# Original README
+
 <a href="https://getanalytics.io">
   <img src="https://user-images.githubusercontent.com/532272/61419845-ab1e9a80-a8b4-11e9-8fd1-18b9e743bb6f.png" width="450" />
 </a>
@@ -9,6 +16,7 @@ A lightweight analytics abstraction library for tracking page views, custom even
 [Read the docs](https://getanalytics.io/) or view the [live demo app](https://analytics-demo.netlify.com)
 
 ## Table of Contents
+
 <!-- AUTO-GENERATED-CONTENT:START (TOC:collapse=true&collapseText=Click to expand) -->
 <details>
 <summary>Click to expand</summary>
@@ -19,29 +27,29 @@ A lightweight analytics abstraction library for tracking page views, custom even
 - [Usage](#usage)
 - [Demo](#demo)
 - [API](#api)
-  * [Configuration](#configuration)
-  * [analytics.identify](#analyticsidentify)
-  * [analytics.track](#analyticstrack)
-  * [analytics.page](#analyticspage)
-  * [analytics.user](#analyticsuser)
-  * [analytics.reset](#analyticsreset)
-  * [analytics.ready](#analyticsready)
-  * [analytics.on](#analyticson)
-  * [analytics.once](#analyticsonce)
-  * [analytics.getState](#analyticsgetstate)
-  * [analytics.storage](#analyticsstorage)
-  * [analytics.storage.getItem](#analyticsstoragegetitem)
-  * [analytics.storage.setItem](#analyticsstoragesetitem)
-  * [analytics.storage.removeItem](#analyticsstorageremoveitem)
-  * [analytics.plugins](#analyticsplugins)
-  * [analytics.plugins.enable](#analyticspluginsenable)
-  * [analytics.plugins.disable](#analyticspluginsdisable)
+  - [Configuration](#configuration)
+  - [analytics.identify](#analyticsidentify)
+  - [analytics.track](#analyticstrack)
+  - [analytics.page](#analyticspage)
+  - [analytics.user](#analyticsuser)
+  - [analytics.reset](#analyticsreset)
+  - [analytics.ready](#analyticsready)
+  - [analytics.on](#analyticson)
+  - [analytics.once](#analyticsonce)
+  - [analytics.getState](#analyticsgetstate)
+  - [analytics.storage](#analyticsstorage)
+  - [analytics.storage.getItem](#analyticsstoragegetitem)
+  - [analytics.storage.setItem](#analyticsstoragesetitem)
+  - [analytics.storage.removeItem](#analyticsstorageremoveitem)
+  - [analytics.plugins](#analyticsplugins)
+  - [analytics.plugins.enable](#analyticspluginsenable)
+  - [analytics.plugins.disable](#analyticspluginsdisable)
 - [Events](#events)
 - [Analytic plugins](#analytic-plugins)
 - [Community Plugins](#community-plugins)
 - [Creating analytics plugins](#creating-analytics-plugins)
-  * [React to any event](#react-to-any-event)
-  * [Custom methods](#custom-methods)
+  - [React to any event](#react-to-any-event)
+  - [Custom methods](#custom-methods)
 - [Plugin Naming Conventions](#plugin-naming-conventions)
 - [Debugging analytics](#debugging-analytics)
 - [TypeScript support](#typescript-support)
@@ -63,7 +71,7 @@ A lightweight analytics abstraction library for tracking page views, custom even
 - [x] Works offline
 - [x] TypeScript support
 
-##  Why
+## Why
 
 Companies frequently change analytics requirements based on evolving needs. This results in a lot of complexity, maintenance, & extra code when adding/removing analytic services to a site or application.
 
@@ -135,53 +143,53 @@ analytics.identify('user-id-xyz', {
 <details>
   <summary>Node.js usage</summary>
 
-  For ES6/7 javascript you can `import Analytics from 'analytics'` for normal node.js usage you can import like so:
+For ES6/7 javascript you can `import Analytics from 'analytics'` for normal node.js usage you can import like so:
 
-  ```js
-  const { Analytics } = require('analytics')
-  // or const Analytics = require('analytics').default
+```js
+const { Analytics } = require("analytics");
+// or const Analytics = require('analytics').default
 
-  const analytics = Analytics({
-    app: 'my-app-name',
-    version: 100,
-    plugins: [
-      googleAnalyticsPlugin({
-        trackingId: 'UA-121991291',
-      }),
-      customerIOPlugin({
-        siteId: '123-xyz'
-      })
-    ]
-  })
+const analytics = Analytics({
+  app: "my-app-name",
+  version: 100,
+  plugins: [
+    googleAnalyticsPlugin({
+      trackingId: "UA-121991291",
+    }),
+    customerIOPlugin({
+      siteId: "123-xyz",
+    }),
+  ],
+});
 
-  // Fire a page view
-  analytics.page()
-  ```
+// Fire a page view
+analytics.page();
+```
 
 </details>
 
 <details>
   <summary>Browser usage</summary>
 
-  When importing global `analytics` into your project from a CDN, the library exposes via a global `_analytics` variable.
+When importing global `analytics` into your project from a CDN, the library exposes via a global `_analytics` variable.
 
-  Call `_analytics.init` to create an analytics instance.
+Call `_analytics.init` to create an analytics instance.
 
-  ```html
-  <script src="https://unpkg.com/analytics/dist/analytics.min.js"></script>
-  <script>
-    const Analytics = _analytics.init({
-      app: 'my-app-name',
-      version: 100,
-      ...plugins
-    })
+```html
+<script src="https://unpkg.com/analytics/dist/analytics.min.js"></script>
+<script>
+  const Analytics = _analytics.init({
+    app: "my-app-name",
+    version: 100,
+    ...plugins,
+  });
 
-    Analytics.track()
+  Analytics.track();
 
-    // optionally expose to window
-    window.Analytics = Analytics
-  </script>
-  ```
+  // optionally expose to window
+  window.Analytics = Analytics;
+</script>
+```
 
 </details>
 
@@ -201,6 +209,7 @@ Typical usage:
 4. [Plugin custom business logic](#creating-analytics-plugins)
 
 <!-- AUTO-GENERATED-CONTENT:START (API_DOCS) -->
+
 ### Configuration
 
 Analytics library configuration
@@ -218,18 +227,15 @@ After the library is initialized with config, the core API is exposed & ready fo
 **Example**
 
 ```js
-import Analytics from 'analytics'
-import pluginABC from 'analytics-plugin-abc'
-import pluginXYZ from 'analytics-plugin-xyz'
+import Analytics from "analytics";
+import pluginABC from "analytics-plugin-abc";
+import pluginXYZ from "analytics-plugin-xyz";
 
 // initialize analytics
 const analytics = Analytics({
-  app: 'my-awesome-app',
-  plugins: [
-    pluginABC,
-    pluginXYZ
-  ]
-})
+  app: "my-awesome-app",
+  plugins: [pluginABC, pluginXYZ],
+});
 ```
 
 ### analytics.identify
@@ -247,35 +253,43 @@ Identify a user. This will trigger `identify` calls in any installed plugins and
 
 ```js
 // Basic user id identify
-analytics.identify('xyz-123')
+analytics.identify("xyz-123");
 
 // Identify with additional traits
-analytics.identify('xyz-123', {
-  name: 'steve',
-  company: 'hello-clicky'
-})
+analytics.identify("xyz-123", {
+  name: "steve",
+  company: "hello-clicky",
+});
 
 // Fire callback with 2nd or 3rd argument
-analytics.identify('xyz-123', () => {
-  console.log('do this after identify')
-})
+analytics.identify("xyz-123", () => {
+  console.log("do this after identify");
+});
 
 // Disable sending user data to specific analytic tools
-analytics.identify('xyz-123', {}, {
-  plugins: {
-    // disable sending this identify call to segment
-    segment: false
+analytics.identify(
+  "xyz-123",
+  {},
+  {
+    plugins: {
+      // disable sending this identify call to segment
+      segment: false,
+    },
   }
-})
+);
 
 // Send user data to only to specific analytic tools
-analytics.identify('xyz-123', {}, {
-  plugins: {
-    // disable this specific identify in all plugins except customerio
-    all: false,
-    customerio: true
+analytics.identify(
+  "xyz-123",
+  {},
+  {
+    plugins: {
+      // disable this specific identify in all plugins except customerio
+      all: false,
+      customerio: true,
+    },
   }
-})
+);
 ```
 
 ### analytics.track
@@ -293,40 +307,48 @@ Track an analytics event. This will trigger `track` calls in any installed plugi
 
 ```js
 // Basic event tracking
-analytics.track('buttonClicked')
+analytics.track("buttonClicked");
 
 // Event tracking with payload
-analytics.track('itemPurchased', {
+analytics.track("itemPurchased", {
   price: 11,
-  sku: '1234'
-})
+  sku: "1234",
+});
 
 // Fire callback with 2nd or 3rd argument
-analytics.track('newsletterSubscribed', () => {
-  console.log('do this after track')
-})
+analytics.track("newsletterSubscribed", () => {
+  console.log("do this after track");
+});
 
 // Disable sending this event to specific analytic tools
-analytics.track('cartAbandoned', {
-  items: ['xyz', 'abc']
-}, {
-  plugins: {
-    // disable track event for segment
-    segment: false
+analytics.track(
+  "cartAbandoned",
+  {
+    items: ["xyz", "abc"],
+  },
+  {
+    plugins: {
+      // disable track event for segment
+      segment: false,
+    },
   }
-})
+);
 
 // Send event to only to specific analytic tools
-analytics.track('customerIoOnlyEventExample', {
-  price: 11,
-  sku: '1234'
-}, {
-  plugins: {
-    // disable this specific track call all plugins except customerio
-    all: false,
-    customerio: true
+analytics.track(
+  "customerIoOnlyEventExample",
+  {
+    price: 11,
+    sku: "1234",
+  },
+  {
+    plugins: {
+      // disable this specific track call all plugins except customerio
+      all: false,
+      customerio: true,
+    },
   }
-})
+);
 ```
 
 ### analytics.page
@@ -343,34 +365,40 @@ Trigger page view. This will trigger `page` calls in any installed plugins
 
 ```js
 // Basic page tracking
-analytics.page()
+analytics.page();
 
 // Page tracking with page data overrides
 analytics.page({
-  url: 'https://google.com'
-})
+  url: "https://google.com",
+});
 
 // Fire callback with 1st, 2nd or 3rd argument
 analytics.page(() => {
-  console.log('do this after page')
-})
+  console.log("do this after page");
+});
 
 // Disable sending this pageview to specific analytic tools
-analytics.page({}, {
-  plugins: {
-    // disable page tracking event for segment
-    segment: false
+analytics.page(
+  {},
+  {
+    plugins: {
+      // disable page tracking event for segment
+      segment: false,
+    },
   }
-})
+);
 
 // Send pageview to only to specific analytic tools
-analytics.page({}, {
-  plugins: {
-    // disable this specific page in all plugins except customerio
-    all: false,
-    customerio: true
+analytics.page(
+  {},
+  {
+    plugins: {
+      // disable this specific page in all plugins except customerio
+      all: false,
+      customerio: true,
+    },
   }
-})
+);
 ```
 
 ### analytics.user
@@ -385,13 +413,13 @@ Get user data
 
 ```js
 // Get all user data
-const userData = analytics.user()
+const userData = analytics.user();
 
 // Get user id
-const userId = analytics.user('userId')
+const userId = analytics.user("userId");
 
 // Get user company name
-const companyName = analytics.user('traits.company.name')
+const companyName = analytics.user("traits.company.name");
 ```
 
 ### analytics.reset
@@ -406,7 +434,7 @@ Clear all information about the visitor & reset analytic state.
 
 ```js
 // Reset current visitor
-analytics.reset()
+analytics.reset();
 ```
 
 ### analytics.ready
@@ -438,17 +466,17 @@ Attach an event handler function for analytics lifecycle events.
 
 ```js
 // Fire function when 'track' calls happen
-analytics.on('track', ({ payload }) => {
-  console.log('track call just happened. Do stuff')
-})
+analytics.on("track", ({ payload }) => {
+  console.log("track call just happened. Do stuff");
+});
 
 // Remove listener before it is called
-const removeListener = analytics.on('track', ({ payload }) => {
-  console.log('This will never get called')
-})
+const removeListener = analytics.on("track", ({ payload }) => {
+  console.log("This will never get called");
+});
 
 // cleanup .on listener
-removeListener()
+removeListener();
 ```
 
 ### analytics.once
@@ -464,17 +492,17 @@ Attach a handler function to an event and only trigger it only once.
 
 ```js
 // Fire function only once 'track'
-analytics.once('track', ({ payload }) => {
-  console.log('This will only triggered once when analytics.track() fires')
-})
+analytics.once("track", ({ payload }) => {
+  console.log("This will only triggered once when analytics.track() fires");
+});
 
 // Remove listener before it is called
-const listener = analytics.once('track', ({ payload }) => {
-  console.log('This will never get called b/c listener() is called')
-})
+const listener = analytics.once("track", ({ payload }) => {
+  console.log("This will never get called b/c listener() is called");
+});
 
 // cleanup .once listener before it fires
-listener()
+listener();
 ```
 
 ### analytics.getState
@@ -489,10 +517,10 @@ Get data about user, activity, or context. Access sub-keys of state with `dot.pr
 
 ```js
 // Get the current state of analytics
-analytics.getState()
+analytics.getState();
 
 // Get a subpath of state
-analytics.getState('context.offline')
+analytics.getState("context.offline");
 ```
 
 ### analytics.storage
@@ -504,16 +532,16 @@ These methods will allow you to save data in localStorage, cookies, or to the wi
 
 ```js
 // Pull storage off analytics instance
-const { storage } = analytics
+const { storage } = analytics;
 
 // Get value
-storage.getItem('storage_key')
+storage.getItem("storage_key");
 
 // Set value
-storage.setItem('storage_key', 'value')
+storage.setItem("storage_key", "value");
 
 // Remove value
-storage.removeItem('storage_key')
+storage.removeItem("storage_key");
 ```
 
 ### analytics.storage.getItem
@@ -528,7 +556,7 @@ Get value from storage
 **Example**
 
 ```js
-analytics.storage.getItem('storage_key')
+analytics.storage.getItem("storage_key");
 ```
 
 ### analytics.storage.setItem
@@ -544,7 +572,7 @@ Set storage value
 **Example**
 
 ```js
-analytics.storage.setItem('storage_key', 'value')
+analytics.storage.setItem("storage_key", "value");
 ```
 
 ### analytics.storage.removeItem
@@ -559,12 +587,12 @@ Remove storage value
 **Example**
 
 ```js
-analytics.storage.removeItem('storage_key')
+analytics.storage.removeItem("storage_key");
 ```
 
 ### analytics.plugins
 
-Async Management methods for plugins. 
+Async Management methods for plugins.
 
 This is also where [custom methods](https://bit.ly/329vFXy) are loaded into the instance.
 
@@ -572,10 +600,10 @@ This is also where [custom methods](https://bit.ly/329vFXy) are loaded into the 
 
 ```js
 // Enable a plugin by namespace
-analytics.plugins.enable('keenio')
+analytics.plugins.enable("keenio");
 
 // Disable a plugin by namespace
-analytics.plugins.disable('google-analytics')
+analytics.plugins.disable("google-analytics");
 ```
 
 ### analytics.plugins.enable
@@ -590,14 +618,14 @@ Enable analytics plugin
 **Example**
 
 ```js
-analytics.plugins.enable('google-analytics').then(() => {
-  console.log('do stuff')
-})
+analytics.plugins.enable("google-analytics").then(() => {
+  console.log("do stuff");
+});
 
 // Enable multiple plugins at once
-analytics.plugins.enable(['google-analytics', 'segment']).then(() => {
-  console.log('do stuff')
-})
+analytics.plugins.enable(["google-analytics", "segment"]).then(() => {
+  console.log("do stuff");
+});
 ```
 
 ### analytics.plugins.disable
@@ -612,14 +640,15 @@ Disable analytics plugin
 **Example**
 
 ```js
-analytics.plugins.disable('google').then(() => {
-  console.log('do stuff')
-})
+analytics.plugins.disable("google").then(() => {
+  console.log("do stuff");
+});
 
-analytics.plugins.disable(['google', 'segment']).then(() => {
-  console.log('do stuff')
-})
+analytics.plugins.disable(["google", "segment"]).then(() => {
+  console.log("do stuff");
+});
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Events
@@ -629,53 +658,55 @@ The `analytics` library comes with a large variety of event listeners that can b
 These listeners can be fired using `analytics.on` & `analytics.once`
 
 ```js
-const eventName = 'pageEnd'
+const eventName = "pageEnd";
 analytics.on(eventName, ({ payload }) => {
-  console.log('payload', payload)
-})
+  console.log("payload", payload);
+});
 ```
 
 Below is a list of the current available events
 
 <!-- AUTO-GENERATED-CONTENT:START (EVENT_DOCS) -->
-| Event | Description |
-|:------|:-------|
-| **`bootstrap`** | Fires when analytics library starts up.<br/>This is the first event fired. '.on/once' listeners are not allowed on bootstrap<br/>Plugins can attach logic to this event |
-| **`params`** | Fires when analytics parses URL parameters |
-| **`campaign`** | Fires if params contain "utm" parameters |
-| **`initializeStart`** | Fires before 'initialize', allows for plugins to cancel loading of other plugins |
-| **`initialize`** | Fires when analytics loads plugins |
-| **`initializeEnd`** | Fires after initialize, allows for plugins to run logic after initialization methods run |
-| **`ready`** | Fires when all analytic providers are fully loaded. This waits for 'initialize' and 'loaded' to return true |
-| **`resetStart`** | Fires if analytic.reset() is called.<br/>Use this event to cancel reset based on a specific condition |
-| **`reset`** | Fires if analytic.reset() is called.<br/>Use this event to run custom cleanup logic (if needed) |
-| **`resetEnd`** | Fires after analytic.reset() is called.<br/>Use this event to run a callback after user data is reset |
-| **`pageStart`** | Fires before 'page' events fire.<br/> This allows for dynamic page view cancellation based on current state of user or options passed in. |
-| **`page`** | Core analytics hook for page views.<br/> If your plugin or integration tracks page views, this is the event to fire on. |
-| **`pageEnd`** | Fires after all registered 'page' methods fire. |
-| **`pageAborted`** | Fires if 'page' call is cancelled by a plugin |
-| **`trackStart`** | Called before the 'track' events fires.<br/> This allows for dynamic page view cancellation based on current state of user or options passed in. |
-| **`track`** | Core analytics hook for event tracking.<br/> If your plugin or integration tracks custom events, this is the event to fire on. |
-| **`trackEnd`** | Fires after all registered 'track' events fire from plugins. |
-| **`trackAborted`** | Fires if 'track' call is cancelled by a plugin |
-| **`identifyStart`** | Called before the 'identify' events fires.<br/>This allows for dynamic page view cancellation based on current state of user or options passed in. |
-| **`identify`** | Core analytics hook for user identification.<br/> If your plugin or integration identifies users or user traits, this is the event to fire on. |
-| **`identifyEnd`** | Fires after all registered 'identify' events fire from plugins. |
-| **`identifyAborted`** | Fires if 'track' call is cancelled by a plugin |
-| **`userIdChanged`** | Fires when a user id is updated |
-| **`registerPlugins`** | Fires when analytics is registering plugins |
-| **`enablePlugin`** | Fires when 'analytics.plugins.enable()' is called |
-| **`disablePlugin`** | Fires when 'analytics.plugins.disable()' is called |
-| **`online`** | Fires when browser network goes online.<br/>This fires only when coming back online from an offline state. |
-| **`offline`** | Fires when browser network goes offline. |
-| **`setItemStart`** | Fires when analytics.storage.setItem is initialized.<br/>This event gives plugins the ability to intercept keys & values and alter them before they are persisted. |
-| **`setItem`** | Fires when analytics.storage.setItem is called.<br/>This event gives plugins the ability to intercept keys & values and alter them before they are persisted. |
-| **`setItemEnd`** | Fires when setItem storage is complete. |
-| **`setItemAborted`** | Fires when setItem storage is cancelled by a plugin. |
-| **`removeItemStart`** | Fires when analytics.storage.removeItem is initialized.<br/>This event gives plugins the ability to intercept removeItem calls and abort / alter them. |
-| **`removeItem`** | Fires when analytics.storage.removeItem is called.<br/>This event gives plugins the ability to intercept removeItem calls and abort / alter them. |
-| **`removeItemEnd`** | Fires when removeItem storage is complete. |
-| **`removeItemAborted`** | Fires when removeItem storage is cancelled by a plugin. |
+
+| Event                   | Description                                                                                                                                                             |
+| :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`bootstrap`**         | Fires when analytics library starts up.<br/>This is the first event fired. '.on/once' listeners are not allowed on bootstrap<br/>Plugins can attach logic to this event |
+| **`params`**            | Fires when analytics parses URL parameters                                                                                                                              |
+| **`campaign`**          | Fires if params contain "utm" parameters                                                                                                                                |
+| **`initializeStart`**   | Fires before 'initialize', allows for plugins to cancel loading of other plugins                                                                                        |
+| **`initialize`**        | Fires when analytics loads plugins                                                                                                                                      |
+| **`initializeEnd`**     | Fires after initialize, allows for plugins to run logic after initialization methods run                                                                                |
+| **`ready`**             | Fires when all analytic providers are fully loaded. This waits for 'initialize' and 'loaded' to return true                                                             |
+| **`resetStart`**        | Fires if analytic.reset() is called.<br/>Use this event to cancel reset based on a specific condition                                                                   |
+| **`reset`**             | Fires if analytic.reset() is called.<br/>Use this event to run custom cleanup logic (if needed)                                                                         |
+| **`resetEnd`**          | Fires after analytic.reset() is called.<br/>Use this event to run a callback after user data is reset                                                                   |
+| **`pageStart`**         | Fires before 'page' events fire.<br/> This allows for dynamic page view cancellation based on current state of user or options passed in.                               |
+| **`page`**              | Core analytics hook for page views.<br/> If your plugin or integration tracks page views, this is the event to fire on.                                                 |
+| **`pageEnd`**           | Fires after all registered 'page' methods fire.                                                                                                                         |
+| **`pageAborted`**       | Fires if 'page' call is cancelled by a plugin                                                                                                                           |
+| **`trackStart`**        | Called before the 'track' events fires.<br/> This allows for dynamic page view cancellation based on current state of user or options passed in.                        |
+| **`track`**             | Core analytics hook for event tracking.<br/> If your plugin or integration tracks custom events, this is the event to fire on.                                          |
+| **`trackEnd`**          | Fires after all registered 'track' events fire from plugins.                                                                                                            |
+| **`trackAborted`**      | Fires if 'track' call is cancelled by a plugin                                                                                                                          |
+| **`identifyStart`**     | Called before the 'identify' events fires.<br/>This allows for dynamic page view cancellation based on current state of user or options passed in.                      |
+| **`identify`**          | Core analytics hook for user identification.<br/> If your plugin or integration identifies users or user traits, this is the event to fire on.                          |
+| **`identifyEnd`**       | Fires after all registered 'identify' events fire from plugins.                                                                                                         |
+| **`identifyAborted`**   | Fires if 'track' call is cancelled by a plugin                                                                                                                          |
+| **`userIdChanged`**     | Fires when a user id is updated                                                                                                                                         |
+| **`registerPlugins`**   | Fires when analytics is registering plugins                                                                                                                             |
+| **`enablePlugin`**      | Fires when 'analytics.plugins.enable()' is called                                                                                                                       |
+| **`disablePlugin`**     | Fires when 'analytics.plugins.disable()' is called                                                                                                                      |
+| **`online`**            | Fires when browser network goes online.<br/>This fires only when coming back online from an offline state.                                                              |
+| **`offline`**           | Fires when browser network goes offline.                                                                                                                                |
+| **`setItemStart`**      | Fires when analytics.storage.setItem is initialized.<br/>This event gives plugins the ability to intercept keys & values and alter them before they are persisted.      |
+| **`setItem`**           | Fires when analytics.storage.setItem is called.<br/>This event gives plugins the ability to intercept keys & values and alter them before they are persisted.           |
+| **`setItemEnd`**        | Fires when setItem storage is complete.                                                                                                                                 |
+| **`setItemAborted`**    | Fires when setItem storage is cancelled by a plugin.                                                                                                                    |
+| **`removeItemStart`**   | Fires when analytics.storage.removeItem is initialized.<br/>This event gives plugins the ability to intercept removeItem calls and abort / alter them.                  |
+| **`removeItem`**        | Fires when analytics.storage.removeItem is called.<br/>This event gives plugins the ability to intercept removeItem calls and abort / alter them.                       |
+| **`removeItemEnd`**     | Fires when removeItem storage is complete.                                                                                                                              |
+| **`removeItemAborted`** | Fires when removeItem storage is cancelled by a plugin.                                                                                                                 |
+
 <!-- AUTO-GENERATED-CONTENT:END (EVENT_DOCS) -->
 
 ## Analytic plugins
@@ -683,6 +714,7 @@ Below is a list of the current available events
 The `analytics` has a robust plugin system. Here is a list of currently available plugins:
 
 <!-- AUTO-GENERATED-CONTENT:START (PLUGINS) -->
+
 - [@analytics/aws-pinpoint](https://github.com/DavidWells/analytics/tree/master/packages/analytics-plugin-aws-pinpoint) AWS Pinpoint integration for 'analytics' module [npm link](https://www.npmjs.com/package/@analytics/aws-pinpoint).
 - [@analytics/cookie-utils](https://github.com/DavidWells/analytics/tree/master/packages/analytics-util-cookie) Cookie helper functions [npm link](https://www.npmjs.com/package/@analytics/cookie-utils).
 - [@analytics/core](https://github.com/DavidWells/analytics/tree/master/packages/analytics-core) Lightweight analytics library for tracking events, page views, & identifying users. Works with any third party analytics provider via an extendable plugin system. [npm link](https://www.npmjs.com/package/@analytics/core).
@@ -723,6 +755,7 @@ The `analytics` has a robust plugin system. Here is a list of currently availabl
 Below are plugins created outside of this repo:
 
 <!-- AUTO-GENERATED-CONTENT:START (EXTERNAL_PLUGINS) -->
+
 - [analytics-fetch](https://www.npmjs.com/package/@standardorg/analytics-fetch) Integration with the browser's fetch API for analytics
 - [Facebook tracking pixel](https://github.com/DavidWells/analytics/issues/54#issuecomment-735413632) Send data to Facebook Tracking pixel
 - [Yandex](https://github.com/pechischev/analytics-yandex-metric-plugin) Send data to Yandex metrica
@@ -743,11 +776,11 @@ export default function pluginExample(userConfig) {
   // return object for analytics to use
   return {
     /* All plugins require a name */
-    name: 'my-example-plugin',
+    name: "my-example-plugin",
     /* Everything else below this is optional depending on your plugin requirements */
     config: {
       whatEver: userConfig.whatEver,
-      elseYouNeed: userConfig.elseYouNeed
+      elseYouNeed: userConfig.elseYouNeed,
     },
     initialize: ({ config }) => {
       // load provider script to page
@@ -763,9 +796,9 @@ export default function pluginExample(userConfig) {
     },
     loaded: () => {
       // return boolean so analytics knows when it can send data to third-party
-      return !!window.myPluginLoaded
-    }
-  }
+      return !!window.myPluginLoaded;
+    },
+  };
 }
 ```
 
@@ -776,19 +809,19 @@ If you don't need to hook into `page` tracking, just omit the `page` key from yo
 To use a plugin, import it and pass it into the `plugins` array when you bootstrap `analytics`.
 
 ```js
-import Analytics from 'analytics'
-import pluginExample from './plugin-example.js'
+import Analytics from "analytics";
+import pluginExample from "./plugin-example.js";
 
 const analytics = Analytics({
-  app: 'my-app-name',
+  app: "my-app-name",
   plugins: [
     pluginExample({
-      whatEver: 'hello',
-      elseYouNeed: 'there'
+      whatEver: "hello",
+      elseYouNeed: "there",
     }),
-    ...otherPlugins
-  ]
-})
+    ...otherPlugins,
+  ],
+});
 ```
 
 ### React to any event
@@ -804,7 +837,7 @@ For a full list of core events, checkout [`events.js`](https://github.com/DavidW
 export default function myPlugin(userConfig) {
   return {
     /* Name is a required field for plugins */
-    name: 'my-plugin',
+    name: "my-plugin",
     /* Bootstrap runs when analytics starts */
     bootstrap: ({ payload, config, instance }) => {
       // Do whatever on `bootstrap` event
@@ -818,7 +851,7 @@ export default function myPlugin(userConfig) {
     trackStart: ({ payload, config, instance }) => {
       // Fire custom logic before analytics.track() calls
     },
-    'track:customerio': ({ payload, config, instance }) => {
+    "track:customerio": ({ payload, config, instance }) => {
       // Fire custom logic before customer.io plugin runs.
       // Here you can customize the data sent to individual analytics providers
     },
@@ -826,7 +859,7 @@ export default function myPlugin(userConfig) {
       // Fire custom logic after analytics.track() calls
     },
     // ... hook into other events
-  }
+  };
 }
 ```
 
@@ -919,7 +952,7 @@ analytics.plugins.one.myCustomThing()
 analytics.plugins.two.cookieBanner()
 ```
 
-##  Plugin Naming Conventions
+## Plugin Naming Conventions
 
 Plugins should follow this naming convention before being published to npm
 
@@ -942,12 +975,12 @@ During development, you can turn on `debug` mode. This will connect the dev tool
 ![analytics-debug-tools](https://user-images.githubusercontent.com/532272/61163639-21da2300-a4c4-11e9-8743-b45d3a570271.gif)
 
 ```js
-import Analytics from 'analytics'
+import Analytics from "analytics";
 
 const analytics = Analytics({
-  app: 'my-app',
-  debug: true
-})
+  app: "my-app",
+  debug: true,
+});
 ```
 
 ## TypeScript support
